@@ -1,0 +1,151 @@
+@font-face {
+    font-family: Manrope;
+    src: url(../fonts/Manrope/Manrope-VariableFont_wght.ttf);
+}
+
+
+$bgBlue: #202632;
+$appBlue: #313a49;
+$textBlue: #cfe4e9;
+$green: #53ffab;
+
+
+body{
+    background-color: $bgBlue;
+    font-family: Manrope, Arial, Helvetica, sans-serif;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    // Remove highlights on mouse click and Android tap
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+
+    img{
+        max-width: 100%;
+    }
+
+    .text-xs{font-size: 0.75rem;line-height: 1rem;}
+    .text-sm{font-size: 0.875rem; line-height: 1.25rem;}
+    .text-base{font-size: 1rem; line-height: 1.5rem;}
+    .text-lg{font-size: 1.125rem; line-height: 1.75rem;}
+    .text-xl{font-size: 1.25rem; line-height: 1.75rem;}
+    .text-2xl{font-size: 1.5rem; line-height: 2rem;}
+    .text-3xl{font-size: 1.875rem; line-height: 2.25rem;}
+    .text-4xl{font-size: 2.25rem; line-height: 2.5rem;}
+    .text-5xl{font-size: 3rem; line-height: 1;}
+    .text-6xl{font-size: 3.75rem; line-height: 1;}
+    .text-7xl{font-size: 4.5rem; line-height: 1.1;}
+    .text-8xl{font-size: 6rem; line-height: 1;}
+
+    .adviceApp{
+        width: 500px;
+        padding: 35px;
+        text-align: center;
+        background-color: $appBlue;
+        border-radius: 25px;
+        position: absolute;
+        bottom: 32vh;
+
+        .adviceNumber{
+            color: $green;
+            text-transform: uppercase;
+            span{
+                margin-left: 5px;
+            }
+        }
+        .adviceText{
+            color: $textBlue;
+            font-weight: bold;
+            min-height: 72px;
+        }
+        .adviceText::before{
+            content: '“';
+        }
+        .adviceText::after{
+            content: '”';
+        }
+        .adviceSeperator{
+            margin: 50px 0;
+        }
+        .adviceBtn{
+            position: absolute;
+            left: 50%;
+            bottom: -40px;
+            transform: translate(-50%, 0);
+            background-color: $green;
+            padding: 25px;
+            border-radius: 100%;
+            border: none;
+            cursor: pointer;
+            img{
+                width: 25px;
+                height: 25px;
+            }
+            transition: filter 0.25s;
+        }
+        .adviceBtn:hover{
+            filter: drop-shadow(0 0 12px $green);
+        }
+        .adviceBtn.loading{
+            pointer-events: none;
+            animation: bgColor 2s ease-in-out;
+            img{
+                animation: spin 2s ease-in-out;
+            }
+        }
+        .adviceBtn.loading:hover{
+            filter: none;
+        }
+        @keyframes spin { 
+            100% { 
+                transform:rotate(360deg); 
+            } 
+        }
+        @keyframes bgColor {
+            50% { 
+                background-color: #ff5353;
+            } 
+            
+        }
+
+    }
+   
+
+}
+
+@media screen and (max-width:768px) {
+    body{
+
+        .text-sm{font-size: 0.75rem;line-height: 1rem;}
+        .text-base{font-size: 0.875rem; line-height: 1.25rem;}
+        .text-lg{font-size: 1rem; line-height: 1.5rem;}
+        .text-xl{font-size: 1.125rem; line-height: 1.75rem;}
+        .text-2xl{font-size: 1.25rem; line-height: 1.75rem;}
+        .text-3xl{font-size: 1.5rem; line-height: 2rem;}
+        .text-4xl{font-size: 1.875rem; line-height: 2.25rem;}
+        .text-5xl{font-size: 2.25rem; line-height: 2.5rem;}
+        .text-6xl{font-size: 3rem; line-height: 1;}
+        .text-7xl{font-size: 3.75rem; line-height: 1;}
+        .text-8xl{font-size: 4.5rem; line-height: 1.1;}
+        
+        .adviceApp{
+            margin: 10px;
+            padding: 20px;
+            width: 85%;
+            .adviceSeperator{
+                img{
+                    content: url(../images/pattern-divider-mobile.svg);
+                }
+            }
+        }
+
+    }
+}

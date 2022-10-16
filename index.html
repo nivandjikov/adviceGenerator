@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advice Generator</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <div class="adviceApp">
+        <h1 class="adviceNumber text-base">Advice <span class="adviceId"></span></h1>
+        <p class="adviceText text-3xl">Click the button below to generate an advice</p>
+        <div class="adviceSeperator">
+            <img src="images/pattern-divider-desktop.svg" alt="">
+        </div>
+        <button class="adviceBtn">
+            <img src="images/icon-dice.svg" alt="">
+        </button>
+    </div>
+
+
+</body>
+</html>
+
+<script>
+    var adviceId = document.querySelector(".adviceId");
+    var adviceText = document.querySelector(".adviceText");
+    var adviceBtn = document.querySelector(".adviceBtn");
+
+
+    function adviceGenerate() {
+        adviceBtn.classList.add("loading");
+        //Optional code, i replaced it with CSS pointer-events: none; in loading class
+        //adviceBtn.disabled = true;
+        setTimeout(function(){ 
+            const xmlhttp = new XMLHttpRequest();
+            xmlhttp.onload = function() {
+                const advices = JSON.parse(this.responseText).slip;
+                adviceId.innerHTML = "#" + advices.id;
+                adviceText.innerHTML = advices.advice;
+            }
+            xmlhttp.open("GET", "https://api.adviceslip.com/advice");
+            xmlhttp.send();
+            adviceBtn.classList.remove("loading");
+            //Optional code, i replaced it with CSS pointer-events: none; in loading class
+            //adviceBtn.disabled = false;
+        }, 2000);
+        
+    }
+    
+    adviceBtn.addEventListener("click", adviceGenerate, 2000);  
+
+
+</script>
